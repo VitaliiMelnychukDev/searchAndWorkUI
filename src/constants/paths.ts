@@ -12,3 +12,8 @@ export const companyPaths = Object.freeze({
   create: `${generalPath.companies}/create`,
   edit: `${generalPath.companies}/:id`
 });
+
+export const workPaths = Object.freeze({
+  create: `${generalPath.works}/create`,
+  edit: `${generalPath.works}/:id`
+});

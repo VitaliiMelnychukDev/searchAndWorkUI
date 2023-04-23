@@ -15,8 +15,6 @@ export const Companies = (): JSX.Element => {
   const { user } = useAuthContext();
   const { companies, error,loading } = useAccountCompanies(true);
 
-  console.log('companies: ', companies);
-
   if (!user) {
     return  <Navigate to={generalPath.login} />
   }
