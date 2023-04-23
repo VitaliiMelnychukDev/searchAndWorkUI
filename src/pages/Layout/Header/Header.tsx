@@ -32,13 +32,13 @@ export const Header = (): JSX.Element => {
     <Container>
       <Box sx={{ minHeight: '70px', display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <MenuItemWrapper to={globalPath}>
-          <Typography sx={{ minWidth: 100 }}>Home</Typography>
+          <Typography sx={{ minWidth: 100, fontSize: '19px' }}>Home</Typography>
         </MenuItemWrapper>
         {user && <MenuItemWrapper to={generalPath.companies}>
-          <Typography sx={{ minWidth: 100 }}>Companies</Typography>
+          <Typography sx={{ minWidth: 100, fontSize: '19px' }}>Companies</Typography>
         </MenuItemWrapper>}
         {user && <MenuItemWrapper to={generalPath.works}>
-          <Typography sx={{ minWidth: 100 }}>Works</Typography>
+          <Typography sx={{ minWidth: 100, fontSize: '19px' }}>Works</Typography>
         </MenuItemWrapper>}
       </Box>
       <Box sx={{ minHeight: '70px', display: 'flex', alignItems: 'center', textAlign: 'center' }}>

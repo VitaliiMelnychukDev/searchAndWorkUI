@@ -13,6 +13,7 @@ import { Create as CompanyCreate } from '../Companies/Create/Create';
 import { Edit as CompanyEdit } from '../Companies/Edit/Edit';
 import { Create as WorkCreate } from '../Works/Create/Create';
 import { Edit as WorkEdit } from '../Works/Edit/Edit';
+import { Work as WorkView } from '../Work/Work';
 
 export const Layout = (): JSX.Element => {
 
@@ -25,6 +26,7 @@ export const Layout = (): JSX.Element => {
         <Route path={generalPath.companies} Component={Companies}></Route>
         <Route path={workPaths.create} Component={WorkCreate}></Route>
         <Route path={workPaths.edit} Component={WorkEdit}></Route>
+        <Route path={workPaths.view} Component={WorkView}></Route>
         <Route path={generalPath.works} Component={Works}></Route>
         <Route path={generalPath.login} Component={Login}></Route>
         <Route path={generalPath.register} Component={Register}></Route>
