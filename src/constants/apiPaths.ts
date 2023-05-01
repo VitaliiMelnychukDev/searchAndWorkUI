@@ -18,6 +18,7 @@ export const apiCompanyPath = Object.freeze({
 export const apiWorkPath = Object.freeze({
   search:  `${apiGeneralPath.work}/search`,
   getAccountWorks:  `${apiGeneralPath.work}/getAccountWorks`,
+  searchWorkers: `${apiGeneralPath.work}/search-workers`,
 });
 
 export const apiCitiesPath = Object.freeze({

@@ -4,7 +4,20 @@ import { apiGeneralPath } from '../../../constants/apiPaths';
 import { ApiUrlHelper } from '../../../helpers/ApiUrlHelper';
 import { Work } from '../../../types/Work';
 
-export type WorkPropsToSave = Pick<Work, 'companyId' | 'cityId' | 'categoryId' | 'payment' | 'title' | 'description' | 'email' | 'phone'> & {
+export type WorkPropsToSave = Pick<
+  Work,
+  'cityId'
+  | 'categoryId'
+  | 'payment'
+  | 'title'
+  | 'description'
+  | 'email'
+  | 'phone'
+  | 'address'
+  | 'startTime'
+  | 'endTime'
+  | 'countWorkers'
+> & {
   id?: number
 }
 

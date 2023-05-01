@@ -38,9 +38,11 @@ export const Works = (): JSX.Element => {
                   <TableCell style={{ minWidth: '150px' }}>Email</TableCell>
                   <TableCell style={{ minWidth: '150px' }}>Phone</TableCell>
                   <TableCell style={{ minWidth: '150px' }}>Payment</TableCell>
-                  <TableCell style={{ minWidth: '150px' }}>Company</TableCell>
                   <TableCell style={{ minWidth: '150px' }}>City</TableCell>
                   <TableCell style={{ minWidth: '150px' }}>Category</TableCell>
+                  <TableCell style={{ minWidth: '150px' }}>Start Time</TableCell>
+                  <TableCell style={{ minWidth: '150px' }}>End Time</TableCell>
+                  <TableCell style={{ minWidth: '150px' }}>Count Workers</TableCell>
                   <TableCell style={{ minWidth: '50px' }}>Actions</TableCell>
                 </TableRow>
               </TableHead>
@@ -54,9 +56,11 @@ export const Works = (): JSX.Element => {
                         <TableCell>{work.email}</TableCell>
                         <TableCell>{work.phone}</TableCell>
                         <TableCell>{work.payment}</TableCell>
-                        <TableCell>{work.company.title}</TableCell>
                         <TableCell>{work.city.title}</TableCell>
                         <TableCell>{work.category.title}</TableCell>
+                        <TableCell>{new Date(Number(work.startTime)).toLocaleString()}</TableCell>
+                        <TableCell>{new Date(Number(work.endTime)).toLocaleString()}</TableCell>
+                        <TableCell>{work.countWorkers}</TableCell>
                         <TableCell><NoDecorationBlackLink to={`${generalPath.works}/${work.id}`}><EditIcon/></NoDecorationBlackLink></TableCell>
                       </TableRow>
                     );

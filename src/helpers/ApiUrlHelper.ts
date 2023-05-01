@@ -1,6 +1,6 @@
 import config from '../configs/base';
 import { generalPath } from '../constants/paths';
-import { apiGeneralPath } from '../constants/apiPaths';
+import { apiGeneralPath, apiWorkPath } from '../constants/apiPaths';
 
 type QueryParams = {
   [key in string]?: string | number
@@ -33,6 +33,10 @@ export class ApiUrlHelper {
 
   static getWorkUrl(workId: number): string {
     return `${apiGeneralPath.work}/${workId}`;
+  }
+
+  static getSearchWorkersUrl(workId: number): string {
+    return `${apiWorkPath.searchWorkers}/${workId}`;
   }
 
   static getAccountCategoryUrl(accountCategoryId: number): string {

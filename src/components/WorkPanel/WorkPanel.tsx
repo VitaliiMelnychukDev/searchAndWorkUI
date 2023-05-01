@@ -41,7 +41,7 @@ export const WorkPanel = ({work, showDescription = false}: Props): JSX.Element =
         </WorkDetailItem>
         <WorkDetailItem>
           <IconWrapper><BusinessIcon /></IconWrapper>
-          <DetailsText>{work.company.title}</DetailsText>
+          <DetailsText>{work.countWorkers}</DetailsText>
         </WorkDetailItem>
         <WorkDetailItem>
           <IconWrapper><MailIcon /></IconWrapper>

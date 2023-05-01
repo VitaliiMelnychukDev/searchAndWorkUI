@@ -4,16 +4,17 @@ import { Category } from './Category';
 
 export type Work = {
   id: number;
-  companyId: number;
   cityId: number;
+  address:string;
   categoryId: number;
   payment: number;
   title: string;
   description: string;
   email: string;
   phone?: string;
-  expiredAt: number;
-  company: Pick<Company, 'id' | 'title'>;
+  startTime: number;
+  endTime: number;
+  countWorkers: number;
   city: City;
   category: Category;
 }
@@ -21,4 +22,12 @@ export type Work = {
 export type WorksResponse = {
   works: Work[],
   total: number,
+}
+
+export type Worker = {
+  id: number;
+  email: string;
+  phone: string | null;
+  name: string;
+  categoryDescription: string;
 }

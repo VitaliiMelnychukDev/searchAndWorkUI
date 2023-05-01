@@ -15,7 +15,7 @@ export const Create = (): JSX.Element => {
 
   return (
     <MainContentWrapper subHeader="New Work" width={900}>
-      <Work email={''} title={''} description={''} payment={0} />
+      <Work address={''} countWorkers={1} email={''} title={''} description={''} payment={0} />
     </MainContentWrapper>
   )
 }

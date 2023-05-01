@@ -1,25 +1,25 @@
-import { Company } from '../../../types/Company';
 import { useEffect, useState } from 'react';
+import { Worker } from '../../../types/Work';
 import searchAndWorkClient from '../../../clients/searchAndWork';
 import { ApiUrlHelper } from '../../../helpers/ApiUrlHelper';
 
-type UseCompany = {
+type UseSearchWorkers = {
   loading: boolean;
-  company: Company | null;
+  workers: Worker[];
   error: string;
 }
 
-export const useCompany = (id: number): UseCompany => {
+export const useSearchWorkers = (id: number): UseSearchWorkers => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [company, setCompany] = useState<Company | null>(null);
+  const [workers, setWorkers] = useState<Worker[]>([]);
 
-  const fetchCompany = async (id: number): Promise<void> => {
+  const fetchWorkers = async (id: number): Promise<void> => {
     setLoading(true);
 
     try {
-      const company: Company = await searchAndWorkClient.get(ApiUrlHelper.getCompanyUrl(id));
-      setCompany(company);
+      const workers: Worker[] = await searchAndWorkClient.get(ApiUrlHelper.getSearchWorkersUrl(id));
+      setWorkers(workers);
       setLoading(false);
     } catch (e: any) {
       setLoading(false);
@@ -28,13 +28,13 @@ export const useCompany = (id: number): UseCompany => {
   }
 
   useEffect(() => {
-    fetchCompany(id);
+    fetchWorkers(id);
   }, [id]);
 
 
   return {
     loading,
-    company,
+    workers,
     error,
   }
 }
