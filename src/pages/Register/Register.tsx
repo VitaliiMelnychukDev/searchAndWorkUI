@@ -5,9 +5,10 @@ import React from 'react';
 import { MainContentWrapper } from '../../components/MainContentWrapper/MainContentWrapper';
 import { Form, Formik } from 'formik';
 import Box from '@mui/material/Box';
-import { Alert, Button, FormControl, TextField } from '@mui/material';
+import { Alert, Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import * as Yup from 'yup';
 import { RegisterProps, useRegister } from './hooks/useRegister';
+import { useCities } from '../../hooks/useCities';
 
 const RegisterSchema = Yup.object().shape({
   password: Yup.string()
@@ -15,12 +16,15 @@ const RegisterSchema = Yup.object().shape({
     .required('Password id required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
   phone: Yup.string(),
-  name: Yup.string().min(2, 'Name should have at least 2 symbols!').required('Name is required')
+  cityId: Yup.number().min(0, 'City is required').required('City is required'),
+  name: Yup.string().min(2, 'Name should have at least 2 symbols!').required('Name is required'),
+  address: Yup.string().min(2, 'Address should have at least 2 symbols!').required('Address is required')
 });
 
 export const Register = (): JSX.Element => {
   const { user } = useAuthContext();
-  const { loading, error, register, registered } = useRegister();
+  const { loading: registeringUser, error, register, registered } = useRegister();
+  const { cities, loading: loadingCities } = useCities();
 
   if (user) {
     return <Navigate to={generalPath.account}/>;
@@ -30,15 +34,18 @@ export const Register = (): JSX.Element => {
     register(registerData);
   }
 
+  const loading = registeringUser || loadingCities;
   return (
     <MainContentWrapper subHeader="Register" width={400}>
       <Formik onSubmit={onSubmit} initialValues={{
         password: '',
         email: '',
         phone: '',
-        name: ''
+        name: '',
+        cityId: -1,
+        address: ''
       }} validationSchema={RegisterSchema}>
-        {({ errors, touched, values, handleChange, handleBlur }) => {
+        {({ errors,setFieldValue, touched, values, handleChange, handleBlur }) => {
           return (
             <Form>
               <Box sx={{ mb: 4 }}>
@@ -54,6 +61,40 @@ export const Register = (): JSX.Element => {
                     onBlur={handleBlur}
                     error={touched.name &&!!errors.name}
                     helperText={touched.name && errors.name}
+                  />
+                </FormControl>
+              </Box>
+              <Box sx={{ mb: 4 }}>
+                <FormControl fullWidth>
+                  <InputLabel id="cityId">City</InputLabel>
+                  <Select
+                    id="cityId"
+                    label="City"
+                    value={values.cityId}
+                    disabled={loading}
+                    onChange={(e) => {
+                      setFieldValue('cityId', e.target.value);
+                    }}
+                    onBlur={handleBlur}
+                    error={touched.cityId && !!errors.cityId}
+                  >
+                    {cities.map(city => <MenuItem value={city.id}>{city.title}</MenuItem>)}
+                  </Select>
+                </FormControl>
+              </Box>
+              <Box sx={{ mb: 4 }}>
+                <FormControl fullWidth>
+                  <TextField
+                    variant="outlined"
+                    id="address"
+                    type={'text'}
+                    label="Address"
+                    value={values.address}
+                    disabled={loading}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={touched.address &&!!errors.address}
+                    helperText={touched.address && errors.address}
                   />
                 </FormControl>
               </Box>

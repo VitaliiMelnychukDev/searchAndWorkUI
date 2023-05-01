@@ -34,8 +34,11 @@ export const Header = (): JSX.Element => {
         <MenuItemWrapper to={globalPath}>
           <Typography sx={{ minWidth: 100, fontSize: '19px' }}>Home</Typography>
         </MenuItemWrapper>
-        {user && <MenuItemWrapper to={generalPath.companies}>
-          <Typography sx={{ minWidth: 100, fontSize: '19px' }}>Companies</Typography>
+        {user && <MenuItemWrapper to={generalPath.accountCategories}>
+          <Typography sx={{ minWidth: 100, fontSize: '19px' }}>Categories</Typography>
+        </MenuItemWrapper>}
+        {user && <MenuItemWrapper to={generalPath.accountHours}>
+          <Typography sx={{ minWidth: 170, fontSize: '19px' }}>Working Hours</Typography>
         </MenuItemWrapper>}
         {user && <MenuItemWrapper to={generalPath.works}>
           <Typography sx={{ minWidth: 100, fontSize: '19px' }}>Works</Typography>

@@ -7,6 +7,8 @@ export const apiGeneralPath = Object.freeze({
   work: 'work',
   city: 'city',
   category: 'category',
+  accountCategory: 'account-category',
+  accountHour: 'account-hour',
 });
 
 export const apiCompanyPath = Object.freeze({
@@ -24,6 +26,14 @@ export const apiCitiesPath = Object.freeze({
 
 export const apiCategoriesPath = Object.freeze({
   getAll: `${apiGeneralPath.category}/getAll`,
+})
+
+export const apiAccountCategoriesPath = Object.freeze({
+  getAll: `${apiGeneralPath.accountCategory}/getAll`,
+})
+
+export const apiAccountHoursPath = Object.freeze({
+  getAll: `${apiGeneralPath.accountHour}/getAll`,
 })
 
 export const apiAuthPath =  Object.freeze({

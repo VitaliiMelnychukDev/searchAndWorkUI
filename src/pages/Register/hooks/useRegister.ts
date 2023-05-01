@@ -8,6 +8,8 @@ export type RegisterProps = {
   phone?: string;
   password: string;
   name: string;
+  cityId: number;
+  address: string;
 }
 
 
@@ -29,7 +31,7 @@ export const useRegister = (): UseRegister => {
     try {
       await searchAndWorkClient.post(apiAuthPath.register, {
         ...registerProps,
-        role: Role.company
+        role: Role.user
       });
       setLoading(false);
       setRegistered(true);

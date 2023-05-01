@@ -34,4 +34,12 @@ export class ApiUrlHelper {
   static getWorkUrl(workId: number): string {
     return `${apiGeneralPath.work}/${workId}`;
   }
+
+  static getAccountCategoryUrl(accountCategoryId: number): string {
+    return `${apiGeneralPath.accountCategory}/${accountCategoryId}`;
+  }
+
+  static getAccountHourUrl(accountHourId: number): string {
+    return `${apiGeneralPath.accountHour}/${accountHourId}`;
+  }
 }

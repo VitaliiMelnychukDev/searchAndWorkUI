@@ -23,8 +23,13 @@ export const UserPage = (): JSX.Element => {
         <Typography variant="h6">Email: </Typography><Typography>{user.email}</Typography>
       </Box>
       <Box sx={{ mb: 3 }}>
-        <NoDecorationLink to={generalPath.companies}><Button variant="outlined" size="large" type="submit">
-          Go to companies
+        <NoDecorationLink to={generalPath.accountCategories}><Button variant="outlined" size="large" type="submit">
+          Go to account categories
+        </Button></NoDecorationLink>
+      </Box>
+      <Box sx={{ mb: 3 }}>
+        <NoDecorationLink to={generalPath.accountHours}><Button variant="outlined" size="large" type="submit">
+          Go to working hours
         </Button></NoDecorationLink>
       </Box>
       <Box sx={{ mb: 3 }}>
