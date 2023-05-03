@@ -1,6 +1,5 @@
 export enum CacheKey {
-  Works = 'Works',
-  Companies = 'Companies',
+  Offers = 'Offers',
   Cities = 'Cities',
   Categories = 'Categories'
 }

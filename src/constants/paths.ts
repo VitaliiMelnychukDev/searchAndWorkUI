@@ -2,6 +2,7 @@ export const globalPath = '/';
 
 export const generalPath = Object.freeze({
   works: `${globalPath}works`,
+  offers: `${globalPath}offers`,
   work: `${globalPath}work`,
   companies: `${globalPath}companies`,
   login: `${globalPath}login`,
@@ -16,10 +17,10 @@ export const companyPaths = Object.freeze({
   edit: `${generalPath.companies}/:id`
 });
 
-export const workPaths = Object.freeze({
-  create: `${generalPath.works}/create`,
-  edit: `${generalPath.works}/:id`,
-  view: `${generalPath.work}/:id`
+export const offerPaths = Object.freeze({
+  create: `${generalPath.offers}/create`,
+  edit: `${generalPath.offers}/:id`,
+  view: `${generalPath.offers}/:id`
 });
 
 export const accountCategoriesPaths = Object.freeze({

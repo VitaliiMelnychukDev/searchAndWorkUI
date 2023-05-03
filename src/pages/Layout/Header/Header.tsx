@@ -43,6 +43,9 @@ export const Header = (): JSX.Element => {
         {user && <MenuItemWrapper to={generalPath.works}>
           <Typography sx={{ minWidth: 100, fontSize: '19px' }}>Works</Typography>
         </MenuItemWrapper>}
+        {user && <MenuItemWrapper to={generalPath.offers}>
+          <Typography sx={{ minWidth: 100, fontSize: '19px' }}>Offers</Typography>
+        </MenuItemWrapper>}
       </Box>
       <Box sx={{ minHeight: '70px', display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         {!user && <MenuItemWrapper to={generalPath.login}>

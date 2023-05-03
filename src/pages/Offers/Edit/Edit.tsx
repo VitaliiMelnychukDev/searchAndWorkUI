@@ -6,13 +6,13 @@ import React from 'react';
 import { Alert } from '@mui/material';
 import { defaultError } from '../../../constants/message';
 import { Loader } from '../../../components/Loader/Loader';
-import { useWork } from '../hooks/useWork';
-import { Work } from '../Work/Work';
+import { useOffer } from '../hooks/useOffer';
+import { Offer } from '../Offer/Offer';
 
 export const Edit = (): JSX.Element => {
   const { user } = useAuthContext();
   const { id } = useParams();
-  const { loading, work, error } = useWork(Number(id));
+  const { loading, offer, error } = useOffer(Number(id));
 
 
   if (!user) {
@@ -20,11 +20,11 @@ export const Edit = (): JSX.Element => {
   }
 
   return (
-    <MainContentWrapper subHeader="Work" width={900}>
+    <MainContentWrapper subHeader="Offer" width={900}>
       <>
         {loading && <Loader />}
-        {(error || !work) && <Alert severity="error">{defaultError}</Alert>}
-        {!loading && !error && work && <Work {...work} />}
+        {(error || !offer) && <Alert severity="error">{defaultError}</Alert>}
+        {!loading && !error && offer && <Offer {...offer} />}
       </>
     </MainContentWrapper>
   )

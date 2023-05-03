@@ -13,7 +13,7 @@ export const Create = (): JSX.Element => {
   }
 
   return (
-    <MainContentWrapper subHeader="New Work" width={900}>
+    <MainContentWrapper subHeader="New Offer" width={900}>
       <AccountCategory description={''} />
     </MainContentWrapper>
   )

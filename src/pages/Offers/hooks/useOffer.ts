@@ -3,23 +3,23 @@ import searchAndWorkClient from '../../../clients/searchAndWork';
 import { ApiUrlHelper } from '../../../helpers/ApiUrlHelper';
 import { Work } from '../../../types/Work';
 
-type UseWork = {
+type UseOffer = {
   loading: boolean;
-  work: Work | null;
+  offer: Work | null;
   error: string;
 }
 
-export const useWork = (id: number): UseWork => {
+export const useOffer = (id: number): UseOffer => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [work, setWork] = useState<Work | null>(null);
+  const [offer, setOffer] = useState<Work | null>(null);
 
-  const fetchWork = async (id: number): Promise<void> => {
+  const fetchOffer = async (id: number): Promise<void> => {
     setLoading(true);
 
     try {
-      const work: Work = await searchAndWorkClient.get(ApiUrlHelper.getWorkUrl(id));
-      setWork(work);
+      const offer: Work = await searchAndWorkClient.get(ApiUrlHelper.getWorkUrl(id));
+      setOffer(offer);
       setLoading(false);
     } catch (e: any) {
       setLoading(false);
@@ -28,13 +28,13 @@ export const useWork = (id: number): UseWork => {
   }
 
   useEffect(() => {
-    fetchWork(id);
+    fetchOffer(id);
   }, [id]);
 
 
   return {
     loading,
-    work,
+    offer,
     error,
   }
 }

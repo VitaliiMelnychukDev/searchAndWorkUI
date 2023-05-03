@@ -33,8 +33,13 @@ export const UserPage = (): JSX.Element => {
         </Button></NoDecorationLink>
       </Box>
       <Box sx={{ mb: 3 }}>
+        <NoDecorationLink to={generalPath.offers}><Button variant="outlined" size="large" type="submit">
+          Go to Offers
+        </Button></NoDecorationLink>
+      </Box>
+      <Box sx={{ mb: 3 }}>
         <NoDecorationLink to={generalPath.works}><Button variant="outlined" size="large" type="submit">
-          Go to works
+          Go to Works
         </Button></NoDecorationLink>
       </Box>
     </MainContentWrapper>

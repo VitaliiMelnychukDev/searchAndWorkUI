@@ -1,4 +1,3 @@
-import { Company } from './Company';
 import { City } from './City';
 import { Category } from './Category';
 
@@ -27,7 +26,12 @@ export type WorksResponse = {
 export type Worker = {
   id: number;
   email: string;
-  phone: string | null;
+  phone: number | null | undefined;
   name: string;
   categoryDescription: string;
+  categoryName: string;
+  cityName: string;
+  startTime: number;
+  endTime: number;
+  workId: number | null;
 }

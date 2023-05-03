@@ -6,26 +6,26 @@ import { ApiUrlHelper } from '../helpers/ApiUrlHelper';
 import { apiWorkPath } from '../constants/apiPaths';
 import { Work, WorksResponse } from '../types/Work';
 
-type UseWorksProps = {
+type UseOffersProps = {
   loading: boolean;
   error: string;
-  works: Work[];
+  offers: Work[];
 }
-export const useAccountWorks = (noChache = false): UseWorksProps => {
+export const useAccountOffers = (noChache = false): UseOffersProps => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [works, setWorks] = useState<Work[]>([]);
+  const [offers, setOffers] = useState<Work[]>([]);
 
-  const fetchWorks = async () => {
+  const fetchOffers = async () => {
     setLoading(true);
-    const worksUrl = ApiUrlHelper.buildUrlWithParams(apiWorkPath.getAccountWorks, {
+    const offersUrl = ApiUrlHelper.buildUrlWithParams(apiWorkPath.getAccountWorks, {
       'limit': 1000,
     })
 
     try {
-      const worksResponse: WorksResponse = await searchAndWorkClient.get(worksUrl);
-      setWorks(worksResponse.works);
-      cache.setCache(CacheKey.Works, worksResponse.works);
+      const offersResponse: WorksResponse = await searchAndWorkClient.get(offersUrl);
+      setOffers(offersResponse.works);
+      cache.setCache(CacheKey.Offers, offersResponse.works);
       setLoading(false);
     } catch (e: any) {
       setError(e.message);
@@ -34,13 +34,13 @@ export const useAccountWorks = (noChache = false): UseWorksProps => {
   }
 
   useEffect(() => {
-    const works = cache.getCache<Work>(CacheKey.Works);
+    const offers = cache.getCache<Work>(CacheKey.Offers);
 
-    if (works && !noChache) {
-      setWorks(works)
+    if (offers && !noChache) {
+      setOffers(offers)
       setLoading(false);
     } else {
-      fetchWorks()
+      fetchOffers()
     }
   }, [noChache]);
 
@@ -48,6 +48,6 @@ export const useAccountWorks = (noChache = false): UseWorksProps => {
   return {
     loading,
     error,
-    works
+    offers
   }
 }

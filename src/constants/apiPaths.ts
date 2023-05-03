@@ -9,10 +9,7 @@ export const apiGeneralPath = Object.freeze({
   category: 'category',
   accountCategory: 'account-category',
   accountHour: 'account-hour',
-});
-
-export const apiCompanyPath = Object.freeze({
-  search: `${apiGeneralPath.company}/search`,
+  accountWork: 'account-work'
 });
 
 export const apiWorkPath = Object.freeze({
@@ -43,3 +40,11 @@ export const apiAuthPath =  Object.freeze({
   refresh: `${apiGeneralPath.auth}/refresh`,
   register: `${apiGeneralPath.auth}/register`
 });
+
+export const accountWorkPaths = Object.freeze({
+  suggestWork: `${apiGeneralPath.accountWork}/suggest-work`,
+  searchWorkWorkers: `${apiGeneralPath.accountWork}/workers`,
+  getAccountWorks: `${apiGeneralPath.accountWork}/account-works`,
+  approveWork: `${apiGeneralPath.accountWork}/approve-work`,
+  rejectWork: `${apiGeneralPath.accountWork}/reject-work`,
+})

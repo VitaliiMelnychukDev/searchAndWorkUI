@@ -19,7 +19,7 @@ export const Edit = (): JSX.Element => {
   }
 
   return (
-    <MainContentWrapper subHeader="Work" width={900}>
+    <MainContentWrapper subHeader="Offer" width={900}>
       <>
         {loading && <Loader />}
         {(error || !accountCategory) && <Alert severity="error">{defaultError}</Alert>}

@@ -1,4 +1,5 @@
 import { Role } from '../constants/role';
+import { AccountCategory } from './AccountCategory';
 
 export type User = {
   name: string;
@@ -13,4 +14,11 @@ export type Tokens = {
 
 export type LoginResponse = Tokens & {
   user: User;
+}
+
+export type Account = User & {
+  id: number;
+  phone?: number;
+  address: string;
+  workCategories: AccountCategory[];
 }

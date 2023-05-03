@@ -4,7 +4,7 @@ import { Alert, Button, FormControl, InputLabel, MenuItem, Select, TextField } f
 import { NoDecorationLink } from '../../styled';
 import { generalPath } from '../../../constants/paths';
 import React from 'react';
-import { useSaveWork, WorkPropsToSave } from '../hooks/useSaveWork';
+import { useSaveOffer, OfferPropsToSave } from '../hooks/useSaveOffer';
 import { useCities } from '../../../hooks/useCities';
 import { useCategories } from '../../../hooks/useCategories';
 import * as Yup from 'yup';
@@ -12,12 +12,11 @@ import { Loader } from '../../../components/Loader/Loader';
 import { defaultError } from '../../../constants/message';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import dayjs from 'dayjs';
-import { useSearchWorkers } from '../hooks/useSearchWorkers';
-import { WorkersPanel } from './WorkersPanel/WorkersPanel';
+import { PetentialsWorkersPanel } from './PetentialsWorkersPanel/PetentialsWorkersPanel';
 
 const now = new Date().getTime();
 
-const CitiesSchema = Yup.object().shape({
+const OffersSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
   phone: Yup.string(),
   title: Yup.string().min(2, 'Name should have at least 2 symbols!').required('Name is required'),
@@ -31,7 +30,7 @@ const CitiesSchema = Yup.object().shape({
   countWorkers: Yup.number().min(1, 'At least 1 worker should be defined').required('Count Workers Is Required'),
 });
 
-export type WorkProps = {
+export type OfferProps = {
   id?: number;
   cityId?: number;
   address: string;
@@ -45,7 +44,7 @@ export type WorkProps = {
   endTime?: number;
   countWorkers: number;
 }
-export const Work = ({
+export const Offer = ({
   id,
   email,
   title,
@@ -58,13 +57,13 @@ export const Work = ({
   startTime,
   endTime,
   countWorkers
-}: WorkProps): JSX.Element => {
-  const { loading: savingWork, save, saved, error: savingWorkError } = useSaveWork();
+}: OfferProps): JSX.Element => {
+  const { loading: savingOffer, save, saved, error: savingOfferError } = useSaveOffer();
   const { cities, loading: loadingCities, error: loadingCitiesError } = useCities();
   const { categories, loading: loadingCategories, error: loadingCategoriesError } = useCategories();
-  const onSubmit = (worksData: Omit<WorkPropsToSave, 'id'>) => {
+  const onSubmit = (offerData: Omit<OfferPropsToSave, 'id'>) => {
     save({
-      ...worksData,
+      ...offerData,
       id
     })
   }
@@ -89,7 +88,7 @@ export const Work = ({
           countWorkers,
           startTime: Number(startTime) || now,
           endTime: Number(endTime) || now,
-        }} validationSchema={CitiesSchema}>
+        }} validationSchema={OffersSchema}>
           {({ setFieldValue, errors, touched, values, handleChange, handleBlur }) => {
             return (
               <Form>
@@ -101,7 +100,7 @@ export const Work = ({
                       type={'text'}
                       label="Name"
                       value={values.title}
-                      disabled={savingWork}
+                      disabled={savingOffer}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       error={touched.title && !!errors.title}
@@ -117,7 +116,7 @@ export const Work = ({
                       type={'text'}
                       label="Email"
                       value={values.email}
-                      disabled={savingWork}
+                      disabled={savingOffer}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       error={touched.email && !!errors.email}
@@ -133,7 +132,7 @@ export const Work = ({
                       type={'text'}
                       label="Phone"
                       value={values.phone}
-                      disabled={savingWork}
+                      disabled={savingOffer}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       error={touched.phone && !!errors.phone}
@@ -149,7 +148,7 @@ export const Work = ({
                       type={'text'}
                       label="Description"
                       value={values.description}
-                      disabled={savingWork}
+                      disabled={savingOffer}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       error={touched.description && !!errors.description}
@@ -165,7 +164,7 @@ export const Work = ({
                       type={'number'}
                       label="Payment"
                       value={values.payment}
-                      disabled={savingWork}
+                      disabled={savingOffer}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       error={touched.payment && !!errors.payment}
@@ -180,7 +179,7 @@ export const Work = ({
                       id="cityId"
                       label="City"
                       value={values.cityId}
-                      disabled={savingWork}
+                      disabled={savingOffer}
                       onChange={(e) => {
                         setFieldValue('cityId', e.target.value);
                       }}
@@ -199,7 +198,7 @@ export const Work = ({
                       type={'text'}
                       label="Address"
                       value={values.address}
-                      disabled={savingWork}
+                      disabled={savingOffer}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       error={touched.address && !!errors.address}
@@ -214,7 +213,7 @@ export const Work = ({
                       id="categoryId"
                       label="Category"
                       value={values.categoryId}
-                      disabled={savingWork}
+                      disabled={savingOffer}
                       onChange={(e) => {
                         setFieldValue('categoryId', e.target.value);
                       }}
@@ -233,7 +232,7 @@ export const Work = ({
                       type={'text'}
                       label="Count Workers"
                       value={values.countWorkers}
-                      disabled={savingWork}
+                      disabled={savingOffer}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       error={touched.countWorkers && !!errors.countWorkers}
@@ -280,24 +279,24 @@ export const Work = ({
                   </FormControl>
                 </Box>
                 <Box sx={{ mb: 4 }}>
-                  {savingWorkError && <Alert severity="error">{savingWorkError}</Alert>}
+                  {savingOfferError && <Alert severity="error">{savingOfferError}</Alert>}
                 </Box>
                 <Box sx={{ mb: 4 }}>
                   {saved && <Alert severity="success">Company successfully saved</Alert>}
                 </Box>
                 <Box textAlign='center'>
-                  <Button disabled={savingWork} variant="outlined" size="large" type="submit">
+                  <Button disabled={savingOffer} variant="outlined" size="large" type="submit">
                     Save
                   </Button>
-                  <NoDecorationLink to={generalPath.works}><Button variant="outlined" size="large" type="submit">
-                    Go to works
+                  <NoDecorationLink to={generalPath.offers}><Button variant="outlined" size="large" type="submit">
+                    Go to Offers
                   </Button></NoDecorationLink>
                 </Box>
               </Form>
             )}}
         </Formik>
       )}
-      {id && <WorkersPanel id={id} />}
+      {id && <PetentialsWorkersPanel workId={id} />}
     </>
   );
 }

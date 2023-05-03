@@ -30,7 +30,7 @@ export const Main = (): JSX.Element => {
   const pageCount = Math.ceil(total/config.PAGINATION.COUNT_PER_PAGE);
 
   return (
-    <MainContentWrapper subHeader="Find Work" width={1100}>
+    <MainContentWrapper subHeader="Find Offer" width={1100}>
       <>
         <Box sx={{ mb: 4 }}>
           <FormControl fullWidth>
@@ -38,7 +38,7 @@ export const Main = (): JSX.Element => {
               variant="outlined"
               id="searchTerm"
               type={'text'}
-              label="Find Work"
+              label="Find Offer"
               value={searchTerm}
               onChange={handleSearch}
             />

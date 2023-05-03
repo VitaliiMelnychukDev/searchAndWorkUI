@@ -4,7 +4,7 @@ import { apiGeneralPath } from '../../../constants/apiPaths';
 import { ApiUrlHelper } from '../../../helpers/ApiUrlHelper';
 import { Work } from '../../../types/Work';
 
-export type WorkPropsToSave = Pick<
+export type OfferPropsToSave = Pick<
   Work,
   'cityId'
   | 'categoryId'
@@ -21,30 +21,30 @@ export type WorkPropsToSave = Pick<
   id?: number
 }
 
-type UseSaveWork = {
+type UseSaveOffer = {
   loading: boolean;
   error: string;
   saved: boolean;
-  save: (workProps: WorkPropsToSave) => Promise<void>;
+  save: (offerProps: OfferPropsToSave) => Promise<void>;
 }
 
-export const useSaveWork = (): UseSaveWork => {
+export const useSaveOffer = (): UseSaveOffer => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [saved, setSaved] = useState(false);
-  const save = async (workProps: WorkPropsToSave): Promise<void> => {
+  const save = async (offerProps: OfferPropsToSave): Promise<void> => {
     setLoading(true);
     setError('');
     setSaved(false);
     try {
       const propsToSave = {
-        ...workProps
+        ...offerProps
       }
       if (propsToSave.phone !== undefined && propsToSave.phone.length === 0) {
         delete propsToSave.phone;
       }
-      if (workProps.id) {
-        await searchAndWorkClient.put(ApiUrlHelper.getWorkUrl(workProps.id), propsToSave);
+      if (offerProps.id) {
+        await searchAndWorkClient.put(ApiUrlHelper.getWorkUrl(offerProps.id), propsToSave);
       } else  {
         await searchAndWorkClient.post(apiGeneralPath.work, propsToSave);
       }

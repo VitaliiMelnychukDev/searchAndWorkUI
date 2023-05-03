@@ -35,7 +35,7 @@ export const useWorks = (): UseWorksProps => {
       const worksResponse: WorksResponse = await searchAndWorkClient.get(worksUrl);
       setWorks(worksResponse.works);
       setTotal(worksResponse.total);
-      cache.setCache(CacheKey.Works, worksResponse.works);
+      cache.setCache(CacheKey.Offers, worksResponse.works);
       setLoading(false);
     } catch (e: any) {
       setError(e.message);
